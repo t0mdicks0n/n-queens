@@ -79,12 +79,35 @@
     //
     // test if a specific row on this board contains a conflict
     hasRowConflictAt: function(rowIndex) {
-      return false; // fixme
+
+      var sum = 0;
+
+      for (var i = 0; i < this.rows()[rowIndex].length; i++) {
+        sum += this.rows()[rowIndex][i];
+      }
+
+      if (sum > 1) {
+        return true;
+      } else {
+        return false;
+      }
     },
 
     // test if any rows on this board contain conflicts
     hasAnyRowConflicts: function() {
-      return false; // fixme
+      var sum = 0;
+
+      for (var i = 0; i < this.rows().length; i++) {
+        for (var j = 0; j < this.rows()[i].length; j++) {
+          sum += this.rows()[i][j];
+        }
+        if (sum > 1) {
+          return true;
+        } else {
+          sum = 0;
+        }
+      }
+      return false;
     },
 
 
@@ -94,11 +117,43 @@
     //
     // test if a specific column on this board contains a conflict
     hasColConflictAt: function(colIndex) {
-      return false; // fixme
+      // create a sum variable
+      var sum = 0;
+
+      // iterate over the rows
+        // on each row at index 'colIndex' add value to sum
+
+      // check if sum is larger then 1
+        // if true return true
+        // else return false
+
+      for (var i = 0; i < this.rows().length; i++) {
+        sum += this.rows()[i][colIndex];
+      }
+
+      if (sum > 1) {
+        return true;
+      } else {
+        return false;
+      }
+
+      // return false; // fixme
     },
 
     // test if any columns on this board contain conflicts
     hasAnyColConflicts: function() {
+      var sum = 0;
+      for (var i = 0; i < this.rows().length; i++) {
+        for (var j = 0; j < this.rows().length; j++) {
+          sum += this.rows()[j][i];
+        }
+        if (sum > 1) {
+          return true;
+        } else {
+          sum = 0;
+        }
+      }
+
       return false; // fixme
     },
 
