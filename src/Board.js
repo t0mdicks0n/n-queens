@@ -145,7 +145,7 @@
       var sum = 0;
       for (var i = 0; i < this.rows().length; i++) {
         for (var j = 0; j < this.rows().length; j++) {
-          sum += this.rows()[j][i];
+          sum += this.rows()[i][j];
         }
         if (sum > 1) {
           return true;
@@ -154,7 +154,7 @@
         }
       }
 
-      return false; // fixme
+      // return false; // fixme
     },
 
 
@@ -164,11 +164,42 @@
     //
     // test if a specific major diagonal on this board contains a conflict
     hasMajorDiagonalConflictAt: function(majorDiagonalColumnIndexAtFirstRow) {
+
+
+      // find value this[0][majorDiagonalColumnIndexAtFirstRow]
+      // if value is undefined or 0
+        // move to next position
+
+      // iterate over the columns from the given colum number
+        // increment sum var
+        // jump 1 row down
+
+      var sum = 0;
+      var row = 0;
+
+      for (var i = majorDiagonalColumnIndexAtFirstRow; i < this.rows().length; i++) {
+        if (i >= 0) {
+          sum += this.rows()[row][i];
+        }
+        row++;
+      }
+
+      if (sum > 1) {
+        return true;
+      }
+
       return false; // fixme
     },
 
     // test if any major diagonals on this board contain conflicts
     hasAnyMajorDiagonalConflicts: function() {
+
+      for (var i = - this.rows().length; i < this.rows().length; i++) {
+        if (this.hasMajorDiagonalConflictAt(i)) {
+          return true;
+        }
+      }
+
       return false; // fixme
     },
 
