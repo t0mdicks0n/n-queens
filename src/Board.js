@@ -88,9 +88,8 @@
 
       if (sum > 1) {
         return true;
-      } else {
-        return false;
       }
+      return false;
     },
 
     // test if any rows on this board contain conflicts
@@ -98,16 +97,21 @@
       var sum = 0;
 
       for (var i = 0; i < this.rows().length; i++) {
-        for (var j = 0; j < this.rows()[i].length; j++) {
-          sum += this.rows()[i][j];
-        }
-        if (sum > 1) {
+        if (this.hasRowConflictAt(i)) {
           return true;
-        } else {
-          sum = 0;
         }
       }
       return false;
+        // for (var j = 0; j < this.rows()[i].length; j++) {}
+      //     sum += this.rows()[i][j];
+        
+      //   if (sum > 1) {
+      //     return true;
+      //   } else {
+      //     sum = 0;
+      //   }
+      
+      // return false;
     },
 
 
@@ -133,9 +137,8 @@
 
       if (sum > 1) {
         return true;
-      } else {
-        return false;
       }
+      return false;
 
       // return false; // fixme
     },
@@ -144,15 +147,19 @@
     hasAnyColConflicts: function() {
       var sum = 0;
       for (var i = 0; i < this.rows().length; i++) {
-        for (var j = 0; j < this.rows().length; j++) {
-          sum += this.rows()[i][j];
-        }
-        if (sum > 1) {
+        if (this.hasColConflictAt(i)) {
           return true;
-        } else {
-          sum = 0;
         }
       }
+        // for (var j = 0; j < this.rows().length; j++) {}
+        //   sum += this.rows()[i][j];
+        
+        // if (sum > 1) {
+        //   return true;
+        // } else {
+        //   sum = 0;
+        // }
+      
 
       return false; // fixme
     },
