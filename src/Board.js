@@ -154,7 +154,7 @@
         }
       }
 
-      // return false; // fixme
+      return false; // fixme
     },
 
 
@@ -214,14 +214,7 @@
       var sum = 0;
       var row = 0;
 
-      // for (var i = minorDiagonalColumnIndexAtFirstRow; i >= Math.max(minorDiagonalColumnIndexAtFirstRow - this.rows().length, 0); i--) {
-      //   if (i < this.rows().length) {
-      //     sum += this.rows()[row][i];
-      //   }
-      //   row ++; 
-      // }
-
-      for (var i = minorDiagonalColumnIndexAtFirstRow; i >  minorDiagonalColumnIndexAtFirstRow - this.rows().length; i--) {
+      for (var i = minorDiagonalColumnIndexAtFirstRow; i > Math.max(minorDiagonalColumnIndexAtFirstRow - this.rows().length, -1); i--) {
         if (i < this.rows().length) {
           sum += this.rows()[row][i];
         }
@@ -239,7 +232,7 @@
 
     // test if any minor diagonals on this board contain conflicts
     hasAnyMinorDiagonalConflicts: function() {
-      for (var i = (this.rows().length - 1) * 2; i >= 0; i--) {
+      for (var i = (this.rows().length * 2) - 1; i >= 0; i--) {
         if (this.hasMinorDiagonalConflictAt(i)) {
           return true;
         }
