@@ -177,11 +177,11 @@
       var sum = 0;
       var row = 0;
 
-      for (var i = majorDiagonalColumnIndexAtFirstRow; i < this.rows().length; i++) {
+      for (var i = majorDiagonalColumnIndexAtFirstRow; i < Math.min(majorDiagonalColumnIndexAtFirstRow + this.rows().length, this.rows().length); i++) {
         if (i >= 0) {
           sum += this.rows()[row][i];
         }
-        row++;
+        row ++; 
       }
 
       if (sum > 1) {
@@ -193,8 +193,7 @@
 
     // test if any major diagonals on this board contain conflicts
     hasAnyMajorDiagonalConflicts: function() {
-
-      for (var i = - this.rows().length; i < this.rows().length; i++) {
+      for (var i = - this.rows().length + 1; i < this.rows().length; i++) {
         if (this.hasMajorDiagonalConflictAt(i)) {
           return true;
         }
@@ -210,12 +209,44 @@
     //
     // test if a specific minor diagonal on this board contains a conflict
     hasMinorDiagonalConflictAt: function(minorDiagonalColumnIndexAtFirstRow) {
+      // console.log('fed: ', minorDiagonalColumnIndexAtFirstRow)
+
+      var sum = 0;
+      var row = 0;
+
+      // for (var i = minorDiagonalColumnIndexAtFirstRow; i >= Math.max(minorDiagonalColumnIndexAtFirstRow - this.rows().length, 0); i--) {
+      //   if (i < this.rows().length) {
+      //     sum += this.rows()[row][i];
+      //   }
+      //   row ++; 
+      // }
+
+      for (var i = minorDiagonalColumnIndexAtFirstRow; i >  minorDiagonalColumnIndexAtFirstRow - this.rows().length; i--) {
+        if (i < this.rows().length) {
+          sum += this.rows()[row][i];
+        }
+        row ++; 
+      }
+
+      if (sum > 1) {
+        return true;
+      }
+
       return false; // fixme
+
+      //return false; // fixme
     },
 
     // test if any minor diagonals on this board contain conflicts
     hasAnyMinorDiagonalConflicts: function() {
+      for (var i = (this.rows().length - 1) * 2; i >= 0; i--) {
+        if (this.hasMinorDiagonalConflictAt(i)) {
+          return true;
+        }
+      }
+
       return false; // fixme
+      // return false; // fixme
     }
 
     /*--------------------  End of Helper Functions  ---------------------*/
